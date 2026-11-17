@@ -1,1 +1,109 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sign in | Lumina Library</title><link rel="stylesheet" href="css/style.css"></head><body><div class="stars stars-a" aria-hidden="true"></div><div class="stars stars-b" aria-hidden="true"></div><header class="nav"><a class="brand" href="index.html#home"><span class="brand-mark">✦</span><span>LUMINA <small>LIBRARY</small></span></a><button class="menu" id="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button><nav id="navlinks"><a href="index.html#home">Home</a><a href="index.html#collection">Collection</a><a href="index.html#about">About</a><a href="index.html#reviews">Community</a><a class="nav-login" href="register.html">Join Lumina</a></nav></header><main class="auth-layout wrap"><section class="auth-story"><div class="eyebrow">✦ YOUR DIGITAL READING SPACE</div><h1>Welcome back to your <em>reading universe.</em></h1><p>Your next favorite story is waiting. Sign in to return to the books and conversations you love.</p><div class="auth-art"><div class="auth-orbit" aria-hidden="true">✦</div></div></section><section class="auth-card"><a class="auth-back" href="index.html">← Back to library</a><div class="eyebrow">WELCOME BACK</div><h2>Sign in</h2><p>Enter your details to continue your journey.</p><form class="auth-form" id="auth-form" data-mode="login" novalidate><label class="auth-field">Email address<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required maxlength="254"></label><label class="auth-field">Password<input type="password" name="password" autocomplete="current-password" placeholder="Enter your password" required></label><div class="auth-options"><label><input type="checkbox" name="remember"> Remember me</label><span>Forgot password? <span title="Available after backend integration">(coming soon)</span></span></div><p class="auth-feedback" id="auth-feedback" role="status" aria-live="polite" hidden></p><button type="submit" class="btn primary auth-submit">Sign in <span>↗</span></button></form><div class="auth-switch">New to Lumina? <a href="register.html">Create an account</a></div><div class="auth-demo">Front-end preview only. No credentials are sent, stored, or used to create accounts. Authentication, secure sessions and server-side validation will be connected by the PHP team.</div></section></main><footer><div class="wrap footer-inner"><a class="brand" href="index.html"><span class="brand-mark">✦</span><span>LUMINA <small>LIBRARY</small></span></a><p>Explore more. Imagine beyond.</p><span>© 2026 Lumina Library · Student project prototype</span></div></footer><script src="js/auth.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign in | Lumina Library</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="stars stars-a" aria-hidden="true"></div>
+    <div class="stars stars-b" aria-hidden="true"></div>
+    <header class="nav">
+      <a class="brand" href="index.html#home"
+        ><span class="brand-mark">✦</span
+        ><span>LUMINA <small>LIBRARY</small></span></a
+      ><button
+        class="menu"
+        id="menu"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+      <nav id="navlinks">
+        <a href="index.html#home">Home</a
+        ><a href="index.html#collection">Collection</a
+        ><a href="index.html#about">About</a
+        ><a href="index.html#reviews">Community</a
+        ><a class="nav-login" href="register.html">Join Lumina</a>
+      </nav>
+    </header>
+    <main class="auth-layout wrap">
+      <section class="auth-story">
+        <div class="eyebrow">✦ YOUR DIGITAL READING SPACE</div>
+        <h1>Welcome back to your <em>reading universe.</em></h1>
+        <p>
+          Your next favorite story is waiting. Sign in to return to the books
+          and conversations you love.
+        </p>
+        <div class="auth-art">
+          <div class="auth-orbit" aria-hidden="true">✦</div>
+        </div>
+      </section>
+      <section class="auth-card">
+        <a class="auth-back" href="index.html">← Back to library</a>
+        <div class="eyebrow">WELCOME BACK</div>
+        <h2>Sign in</h2>
+        <p>Enter your details to continue your journey.</p>
+        <form class="auth-form" id="auth-form" data-mode="login" novalidate>
+          <label class="auth-field"
+            >Email address<input
+              type="email"
+              name="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+              maxlength="254" /></label
+          ><label class="auth-field"
+            >Password<input
+              type="password"
+              name="password"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              required
+          /></label>
+          <div class="auth-options">
+            <label><input type="checkbox" name="remember" /> Remember me</label
+            ><span
+              >Forgot password?
+              <span title="Available after backend integration"
+                >(coming soon)</span
+              ></span
+            >
+          </div>
+          <p
+            class="auth-feedback"
+            id="auth-feedback"
+            role="status"
+            aria-live="polite"
+            hidden
+          ></p>
+          <button type="submit" class="btn primary auth-submit">
+            Sign in <span>↗</span>
+          </button>
+        </form>
+        <div class="auth-switch">
+          New to Lumina? <a href="register.html">Create an account</a>
+        </div>
+        <div class="auth-demo">
+          Front-end preview only. No credentials are sent, stored, or used to
+          create accounts. Authentication, secure sessions and server-side
+          validation will be connected by the PHP team.
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap footer-inner">
+        <a class="brand" href="index.html"
+          ><span class="brand-mark">✦</span
+          ><span>LUMINA <small>LIBRARY</small></span></a
+        >
+        <p>Explore more. Imagine beyond.</p>
+        <span>© 2026 Lumina Library · Student project prototype</span>
+      </div>
+    </footer>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

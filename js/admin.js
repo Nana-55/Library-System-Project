@@ -1,4 +1,112 @@
 // Front-end-only dashboard. Never use this script as authorization or persistent storage.
-const seed=[['Anne of Green Gables','L. M. Montgomery','Classic Fiction',1908],['Little Women','Louisa May Alcott','Family · Classic',1868],['The Secret Garden','Frances Hodgson Burnett','Classic Fiction',1911],['A Little Princess','Frances Hodgson Burnett','Classic Fiction',1905],['Pride and Prejudice','Jane Austen','Romance · Classic',1813],['Heidi','Johanna Spyri','Classic Fiction',1881],['Black Beauty','Anna Sewell','Classic Fiction',1877],['The Wind in the Willows','Kenneth Grahame','Adventure · Classic',1908]];
-let books=seed.map((b,i)=>({id:i+1,title:b[0],author:b[1],genre:b[2],year:b[3],description:'Book description to be loaded from the database.'}));let editing=null;const tbody=document.getElementById('admin-book-rows'),search=document.getElementById('admin-search'),dialog=document.getElementById('admin-dialog'),form=document.getElementById('admin-form');const menu=document.getElementById('menu'),nav=document.getElementById('navlinks');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
-function el(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n;}function render(){const q=search.value.trim().toLowerCase();tbody.replaceChildren();const filtered=books.filter(b=>(b.title+' '+b.author).toLowerCase().includes(q));for(const book of filtered){const tr=el('tr');const name=el('td');name.append(el('span','admin-book-name',book.title),el('span','admin-book-author',book.author));tr.append(name,el('td','',book.genre),el('td','',String(book.year)));const actions=el('td');const row=el('div','admin-actions');const edit=el('button','admin-action','Edit');edit.type='button';edit.addEventListener('click',()=>openForm(book.id));const del=el('button','admin-action delete','Delete');del.type='button';del.addEventListener('click',()=>{if(confirm('Remove this book from the temporary demo list?')){books=books.filter(b=>b.id!==book.id);render();}});row.append(edit,del);actions.append(row);tr.append(actions);tbody.append(tr);}document.getElementById('stat-books').textContent=books.length;document.getElementById('admin-empty').hidden=filtered.length!==0;}function openForm(id=null){editing=id;form.reset();document.getElementById('admin-form-title').textContent=id===null?'Add a book':'Edit book';if(id!==null){const b=books.find(x=>x.id===id);if(!b)return;for(const key of ['title','author','genre','year','description'])form.elements[key].value=b[key];}dialog.showModal();}function closeForm(){dialog.close();}document.getElementById('add-book').addEventListener('click',()=>openForm());document.getElementById('admin-cancel').addEventListener('click',closeForm);document.getElementById('admin-cancel-top').addEventListener('click',closeForm);search.addEventListener('input',render);form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const data=new FormData(form);const book={id:editing===null?Math.max(0,...books.map(x=>x.id))+1:editing,title:String(data.get('title')).trim(),author:String(data.get('author')).trim(),genre:String(data.get('genre')).trim(),year:Number(data.get('year')),description:String(data.get('description')).trim()};if(!book.title||!book.author||!book.genre||!book.description)return;if(editing===null)books.push(book);else books=books.map(b=>b.id===editing?book:b);closeForm();render();});render();
+const seed = [
+  ["Anne of Green Gables", "L. M. Montgomery", "Classic Fiction", 1908],
+  ["Little Women", "Louisa May Alcott", "Family · Classic", 1868],
+  ["The Secret Garden", "Frances Hodgson Burnett", "Classic Fiction", 1911],
+  ["A Little Princess", "Frances Hodgson Burnett", "Classic Fiction", 1905],
+  ["Pride and Prejudice", "Jane Austen", "Romance · Classic", 1813],
+  ["Heidi", "Johanna Spyri", "Classic Fiction", 1881],
+  ["Black Beauty", "Anna Sewell", "Classic Fiction", 1877],
+  ["The Wind in the Willows", "Kenneth Grahame", "Adventure · Classic", 1908],
+];
+let books = seed.map((b, i) => ({
+  id: i + 1,
+  title: b[0],
+  author: b[1],
+  genre: b[2],
+  year: b[3],
+  description: "Book description to be loaded from the database.",
+}));
+let editing = null;
+const tbody = document.getElementById("admin-book-rows"),
+  search = document.getElementById("admin-search"),
+  dialog = document.getElementById("admin-dialog"),
+  form = document.getElementById("admin-form");
+const menu = document.getElementById("menu"),
+  nav = document.getElementById("navlinks");
+menu.addEventListener("click", () => {
+  const open = nav.classList.toggle("open");
+  menu.setAttribute("aria-expanded", String(open));
+});
+function el(tag, cls, txt) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (txt !== undefined) n.textContent = txt;
+  return n;
+}
+function render() {
+  const q = search.value.trim().toLowerCase();
+  tbody.replaceChildren();
+  const filtered = books.filter((b) =>
+    (b.title + " " + b.author).toLowerCase().includes(q),
+  );
+  for (const book of filtered) {
+    const tr = el("tr");
+    const name = el("td");
+    name.append(
+      el("span", "admin-book-name", book.title),
+      el("span", "admin-book-author", book.author),
+    );
+    tr.append(name, el("td", "", book.genre), el("td", "", String(book.year)));
+    const actions = el("td");
+    const row = el("div", "admin-actions");
+    const edit = el("button", "admin-action", "Edit");
+    edit.type = "button";
+    edit.addEventListener("click", () => openForm(book.id));
+    const del = el("button", "admin-action delete", "Delete");
+    del.type = "button";
+    del.addEventListener("click", () => {
+      if (confirm("Remove this book from the temporary demo list?")) {
+        books = books.filter((b) => b.id !== book.id);
+        render();
+      }
+    });
+    row.append(edit, del);
+    actions.append(row);
+    tr.append(actions);
+    tbody.append(tr);
+  }
+  document.getElementById("stat-books").textContent = books.length;
+  document.getElementById("admin-empty").hidden = filtered.length !== 0;
+}
+function openForm(id = null) {
+  editing = id;
+  form.reset();
+  document.getElementById("admin-form-title").textContent =
+    id === null ? "Add a book" : "Edit book";
+  if (id !== null) {
+    const b = books.find((x) => x.id === id);
+    if (!b) return;
+    for (const key of ["title", "author", "genre", "year", "description"])
+      form.elements[key].value = b[key];
+  }
+  dialog.showModal();
+}
+function closeForm() {
+  dialog.close();
+}
+document.getElementById("add-book").addEventListener("click", () => openForm());
+document.getElementById("admin-cancel").addEventListener("click", closeForm);
+document
+  .getElementById("admin-cancel-top")
+  .addEventListener("click", closeForm);
+search.addEventListener("input", render);
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (!form.reportValidity()) return;
+  const data = new FormData(form);
+  const book = {
+    id: editing === null ? Math.max(0, ...books.map((x) => x.id)) + 1 : editing,
+    title: String(data.get("title")).trim(),
+    author: String(data.get("author")).trim(),
+    genre: String(data.get("genre")).trim(),
+    year: Number(data.get("year")),
+    description: String(data.get("description")).trim(),
+  };
+  if (!book.title || !book.author || !book.genre || !book.description) return;
+  if (editing === null) books.push(book);
+  else books = books.map((b) => (b.id === editing ? book : b));
+  closeForm();
+  render();
+});
+render();
